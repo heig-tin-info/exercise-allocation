@@ -14,13 +14,14 @@ int compare(const void* a, const void* b)
 }
 
 int main(int argc, char *argv[]) {
-    int array[10]; 
+    int *array; 
 
     // Parses arguments and consistency checks...
     if (argc < 2) return 1;
     int elements = atoi(argv[1]); 
 
-    if (elements >= sizeof(array)/sizeof(array[0])) return 2;
+    array = malloc(sizeof(int) * elements);    
+    if (array == NULL) return 2;
 
     // Read values from stdin
     for (int i = 0; i < elements; i++) {
@@ -34,4 +35,6 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < elements; i++) {
         printf("%d\n", array[i]);
     }    
+
+    free(array);
 }
