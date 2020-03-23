@@ -13,26 +13,26 @@ int compare(const void* a, const void* b)
         return 1;
 }
 
-int main(int argc, char *argv[]) {
-    int *array; 
-
-    // Parses arguments and consistency checks...
-    if (argc < 2) return 1;
-    int elements = atoi(argv[1]); 
-
-    array = malloc(sizeof(int) * elements);    
+int main(void) {
+    int buffer_size = 1;
+    int *array = malloc(sizeof(int) * buffer_size);
     if (array == NULL) return 2;
 
     // Read values from stdin
-    for (int i = 0; i < elements; i++) {
-        scanf("%d", &array[i]);
+    int size = 0;
+    while(scanf("%d", &array[size]) > 0) {
+        if (size > buffer_size) {
+            array = realloc(array, buffer_size = size * 2);
+            if (array == NULL) return 2;
+        }
+        size++;
     }
 
     // Sort values
-    qsort(array, sizeof(array)/sizeof(int), sizeof(int), compare);
+    qsort(array, size, sizeof(int), compare);
 
     // Display
-    for (int i = 0; i < elements; i++) {
+    for (int i = 0; i < size; i++) {
         printf("%d\n", array[i]);
     }    
 
