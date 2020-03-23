@@ -19,7 +19,7 @@ $ ./sort 5 <<< "3 4 2 1 5"
 5
 ```
 
-**Note:** l'écriture `./a <<< "foo"` est identique à `cat foo | ./a`.
+**Note:** l'écriture `./a <<< "foo"` est identique à `cat "3 4 2 1 5" | ./a`.
 
 Le nombre d'éléments à lire est le premier argument du programme `sort`. Vous pouvez utliser `atoi`.
 
